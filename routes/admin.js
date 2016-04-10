@@ -20,7 +20,7 @@ router.post('/addProduct',auth.ensureAuthenticated, function(req,res,next) {
     tags: req.body.tags,
     price: req.body.price,
     quantity: req.body.quantity,
-    discount: req.body.discount, // In percrntages
+    discount: req.body.discount, // In percentages
     gender: req.body.gender, // M / F / U (Unisex)
     brand: req.body.brand,
     name: req.body.name
@@ -34,8 +34,9 @@ router.post('/addProduct',auth.ensureAuthenticated, function(req,res,next) {
     }
   });
 
-  //Recomendation Engine Part
+  //Recommendation Engine Part
   //dont know why chahal added this comment
+  // dont know why shubham added ^ this comment
 });
 
 //getUserDetails
@@ -53,7 +54,6 @@ router.post('/getDetails', function (req, res) {
 
 
 router.post('/modifyProduct',auth.ensureAuthenticated,function(req,res,next) {
-
   Catalog.findById(req.body.product_id,function (err, product) {
     if (err) res.json({success:false,err:err});
     else {
@@ -72,9 +72,7 @@ router.post('/modifyProduct',auth.ensureAuthenticated,function(req,res,next) {
                 res.json({success:true,product:product});
             }
         });
-
     }
-
   });
 });
 
@@ -133,7 +131,7 @@ router.post('/deleteMerchant', function(req, res, next){
     });
 });
 
-router.post('/listAllMerchant', function(req,res,next){
+router.post('/listAllMerchant', function(req,res,next){ // show all merchants
 
     Merchant.find({}, function(err, merchant) {
         if(err) res.json({success : false, err: err});
@@ -146,7 +144,7 @@ router.post('/listAllMerchant', function(req,res,next){
 
 
 
-router.post('/listMerchantCatalog', function(req,res,next){
+router.post('/listMerchantCatalog', function(req,res,next){ //show all catalogs for a merchant
 
     Catalog.find({merchant : req.body.merchant}, function(err, product) {
         if(err) res.json({success : false, err: err});

@@ -17,17 +17,27 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/register',function(req,res,next) {
-    res.json({register: 'Welcome! you landed on the register page'});
+    res.render('register');
 });
 
 router.post('/register',function(req,res,next) {
 
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+    Account.register(new Account({
+
+      username : req.body.username,
+      firstName:req.body.firstName,
+      lastName:req.body.lastName,
+      gender:req.body.gender,
+      age:req.body.age,
+      occupation:req.body.occupation
+
+}), req.body.password, function(err, account) {
         if (err || !account) {
             return res.json({ error: err});
         }
         else {
-            return res.json({success:true, user:account });
+            return res.redirect('/admin/profile');
+
         }
     });
 });

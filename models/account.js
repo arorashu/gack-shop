@@ -8,10 +8,10 @@ var Account = new Schema({
     username: String,
     password: String,
     gender: String,
-    email: String,
     Age: Number,
     Photo: String,
     phoneNo: Number,
+    occupation: String,
     isMerchant: {type: Boolean, default: false}
 });
 
